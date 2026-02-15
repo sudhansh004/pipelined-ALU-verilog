@@ -1,12 +1,9 @@
 # 4-Stage Pipelined ALU in Verilog
 
 ## Overview
-This project implements a **4-stage pipelined Arithmetic Logic Unit (ALU)** using
-Verilog HDL. The design performs arithmetic and logical operations on input operands
-by dividing execution into multiple pipeline stages separated by latches controlled
-using a **two-phase clock**, improving throughput while preventing race conditions.
-
-After the pipeline is filled, a new operation can be accepted every clock cycle.
+This project implements a pipelined 16-bit Arithmetic Logic Unit (ALU) using Verilog HDL. The design performs arithmetic and logical operations on operands read from a register file and processes them through multiple pipeline stages separated by registers.
+The pipeline improves throughput by allowing a new instruction to enter the pipeline every clock cycle after the initial latency.
+The ALU supports multiple arithmetic, logical, and shift operations and also generates status flags such as carry, overflow, zero, and negative/sign.
 
 
 ## Pipeline Architecture
@@ -21,6 +18,7 @@ The ALU is divided into the following four stages:
 ### Stage 2 – Execute
 - Performs the ALU operation on operands **A** and **B** as specified by `func`
 - Stores the result in latch **Z**
+- Status flags are stored in the flag register.
 - Propagates destination register and memory address to latches **L23** for the next stage
 
 ### Stage 3 – Write Back
@@ -32,11 +30,12 @@ The ALU is divided into the following four stages:
 
 
 ## Features
-- 4-stage pipelined architecture for improved throughput
+- 4-stage pipelined architecture for faster computations
 - Supports **11 arithmetic and logical operations**
-- Pipeline latches controlled by a **two-phase clock** to prevent race conditions
+- Fully synthesizable Modular implementation with separate ALU, register file, and memory modules
+- Status flag generation (carry, overflow, zero, negative)
+- Active-low reset for proper initialization
 - Fully synchronous, clock-driven design
-- Synthesizable, modular Verilog HDL implementation
 - Comprehensive testbench for functional verification
 
 
