@@ -5,6 +5,11 @@ This project implements a pipelined 16-bit Arithmetic Logic Unit (ALU) using Ver
 The pipeline improves throughput by allowing a new instruction to enter the pipeline every clock cycle after the initial latency.
 The ALU supports multiple arithmetic, logical, and shift operations and also generates status flags such as carry, overflow, zero, and negative/sign.
 
+## Instruction Format
+The pipeline accepts 24-bit instructions in the following format: 
+| rs1     | rs2     | rsd     | func    | mem_addr|
+|---------|---------|---------|---------|---------|
+| 4 bits  | 4 bits  | 4 bits  | 4 bits  | 8 bits  |
 
 ## Pipeline Architecture
 The ALU is divided into the following four stages:
